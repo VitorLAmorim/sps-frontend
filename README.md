@@ -120,7 +120,7 @@ npm -v
 1. **Clone the project (if applicable):**
 ```
 git clone <repository-url>
-cd test-sps-react
+cd sps-react
 ```
 
 2. **Install dependencies:**
