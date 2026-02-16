@@ -1,13 +1,21 @@
-import React from "react";
+import { useAuth } from '../context/AuthContext';
+import { Navigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
-function Home() {
-  return (
-    <div>
-      <h1>SPS REACT TEST</h1>
+export default function Home() {
+    const { isAuthenticated } = useAuth();
 
-      <a href="/users">Usuários</a>
-    </div>
-  );
+    if (!isAuthenticated) {
+        return <Navigate to="/login" replace />;
+    }
+
+    return (
+        <div className="app">
+            <NavBar />
+            <main className="page">
+                <h2 className="page__title">Início</h2>
+                <p style={{ margin: 0, color: '#6b7280' }}>Use o menu acima para acessar a lista de usuários ou criar um novo.</p>
+            </main>
+        </div>
+    );
 }
-
-export default Home;

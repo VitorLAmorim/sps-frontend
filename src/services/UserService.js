@@ -1,22 +1,20 @@
-import axios from "axios";
+import { apiFetch } from './api'
 
-class UserService {
-  async list() {
-    const users = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users`);
-    return users;
-  }
-  async get(id) {
-    throw new Error("Not implemented");
-  }
+export const UserService = {
+  async getAll() {
+   return apiFetch(`/users`);
+  },
+  async getById(id) {
+      return apiFetch(`/users/${id}`);
+  },
   async create(data) {
-    throw new Error("Not implemented");
-  }
+      return apiFetch(`/users`, { method: 'POST', body: JSON.stringify(data) });
+  },
   async delete(id) {
-    throw new Error("Not implemented");
-  }
+      return apiFetch(`/users/${id}`, { method: 'DELETE' });
+  },
   async update(id, data) {
-    throw new Error("Not implemented");
+      return apiFetch(`/users/${id}`, { method: 'PUT', body: JSON.stringify(data) });
   }
 }
 
-export default UserService;
